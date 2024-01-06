@@ -18,8 +18,9 @@ public class Patient {
     private String bloodPressure;
     private double heartRate;
     private double respiratoryRate;
+    private String note;
 
-    public Patient(String name, String familyName, int age) {
+    public Patient(String name, String familyName, int age, String diagnosis) {
         this.familyName = familyName;
 //        this.patientId = generateUniqueId();
         this.name = name;
@@ -32,6 +33,7 @@ public class Patient {
 //        this.bloodPressure = bloodPressure;
 //        this.heartRate = heartRate;
 //        this.respiratoryRate = respiratoryRate;
+        this.diagnosis = diagnosis;
     }
 //    private String generateUniqueId() {
 //        return UUID.randomUUID().toString();
@@ -96,6 +98,11 @@ public class Patient {
     public double getRespiratoryRate() {
         return respiratoryRate;
     }
+
+    public String getNote() {
+        return note;
+    }
+
     public void setAddress(String address){
         this.address = address;
     }
@@ -133,6 +140,10 @@ public class Patient {
 
     public void setRespiratoryRate(double respiratoryRate) {
         this.respiratoryRate = respiratoryRate;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }
 

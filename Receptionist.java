@@ -56,7 +56,7 @@ public class Receptionist {
 
 
 
-        Patient patient = new Patient(name, familyName, age);
+        Patient patient = new Patient(name, familyName, age, diagnosis);
         patient.setAddress(address);
         patient.setPhoneNumber(phoneNumber);
         patient.setDiagnosis(diagnosis);

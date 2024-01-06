@@ -1,10 +1,11 @@
 package org.example;//package Role;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 class Main_System {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 //        DataStorage dataStorage = new DataStorage();
 //        Receptionist receptionist = new Receptionist(dataStorage);
@@ -47,8 +48,12 @@ class Main_System {
                     System.out.println("Invalid specialization. Exiting...");
                     return;
             }
-
             doctor.addDiagnosis(doctorDataStorage);
+            List<Patient> patientDatabase = doctorDataStorage.getPatients();
+
+            DiagnosisUpdater.writePatientToCSVs(patientDatabase, "DiagnosedMedIn.csv",
+                    "DiagnosedChirurgie.csv", "DiagnosedObstertrique.csv");
+
         } else {
             System.out.println("Invalid choice. Exiting...");
         }

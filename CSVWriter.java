@@ -24,7 +24,7 @@ public class CSVWriter {
 
                 // Check the diagnosis type and write to the corresponding file
                 switch (patient.getDiagnosis()) {
-                    case "Medicine Interne":
+                    case "Medicine  Interne":
                         writerMedIn.append(patientData);
                         break;
                     case "Chirurgie":

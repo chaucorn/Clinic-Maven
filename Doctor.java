@@ -26,7 +26,8 @@ public class Doctor {
                 int age = Integer.parseInt(line[2]);
                 //String dateOfBirth = line[3];
 
-                Patient patient = new Patient(name, familyName, age);
+                String diagnosis = line[5];
+                Patient patient = new Patient(name, familyName, age, diagnosis);
 
                 dataStorage.addPatient(patient);
 
@@ -44,40 +45,43 @@ public class Doctor {
         System.out.println("Patient Database:");
 
         for (Patient patient : patients) {
-            if (patient.getDiagnosis() == null) {
-//                System.out.println("Patient ID: " + patient.getPatientId());
-                System.out.println("Name: " + patient.getName());
-                System.out.println("Age: " + patient.getAge());
+            //                System.out.println("Patient ID: " + patient.getPatientId());
+            System.out.println("Name: " + patient.getName());
+            System.out.println("Age: " + patient.getAge());
 //                System.out.println("Address: " + patient.getAddress());
 //                System.out.println("Phone Number: " + patient.getPhoneNumber());
 //                System.out.println("Date of Birth: " + DateUtils.formatToMonthDayYear(patient.getDateOfBirth()));
-                System.out.println("Diagnosis: " + patient.getDiagnosis());
-                System.out.println("-------------------------");
+            System.out.println("Diagnosis: " + patient.getDiagnosis());
+            System.out.println("-------------------------");
 
-                // Ask the doctor for diagnosis information
-                System.out.print("Enter diagnosis for this patient: ");
-                System.out.print("BMI:");
-                double BMI = scanner.nextDouble();
-                patient.setBMI(BMI);
-                System.out.print(("Body Temperature:"));
-                double bodyTemperature = scanner.nextDouble();
-                patient.setBodyTemperature(bodyTemperature);
-                System.out.print(("Blood Pressure:"));
-                scanner.nextLine();
-                String bloodPressure = scanner.nextLine();
-                patient.setBloodPressure(bloodPressure);
-                System.out.print(("Heart Rate:"));
-                double heartRate = scanner.nextDouble();
-                patient.setBodyTemperature(heartRate);
-                System.out.print(("Respiratory Rate"));
-                double respiratoryRate = scanner.nextDouble();
-                patient.setBodyTemperature(respiratoryRate);
+            // Ask the doctor for diagnosis information
+            System.out.print("Enter diagnosis for this patient: ");
+            System.out.print("BMI: ");
+            double BMI = scanner.nextDouble();
+            patient.setBMI(BMI);
+            System.out.print(("Body Temperature: "));
+            double bodyTemperature = scanner.nextDouble();
+            patient.setBodyTemperature(bodyTemperature);
+            System.out.print(("Blood Pressure: "));
+            scanner.nextLine();
+            String bloodPressure = scanner.nextLine();
+            patient.setBloodPressure(bloodPressure);
+            System.out.print(("Heart Rate: "));
+            double heartRate = scanner.nextDouble();
+            patient.setHeartRate(heartRate);
+            System.out.print(("Respiratory Rate: "));
+            double respiratoryRate = scanner.nextDouble();
+            patient.setRespiratoryRate(respiratoryRate);
+            System.out.print("Diagnosis Notes: ");
+            scanner.nextLine();
+            String diagnosedNote = scanner.nextLine();
+            patient.setNote(diagnosedNote);
 
-                
-                System.out.println("Diagnosis added successfully.\n");
-            }
+            System.out.println("Diagnosis added successfully.\n");
+
         }
 
         System.out.println("No more patients with pending diagnosis for " + specialization);
     }
+
 }
