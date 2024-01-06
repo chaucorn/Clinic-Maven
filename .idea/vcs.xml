@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/Clinic-Maven" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyClinic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/MyClinic/src/main/java/org/example" vcs="Git" />
   </component>
 </project>
