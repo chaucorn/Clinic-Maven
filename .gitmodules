@@ -1,0 +1,3 @@
+[submodule ".\\MyClinic\\"]
+	path = .\\MyClinic\\
+	url = https://github.com/username/Clinic.git
