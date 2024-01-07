@@ -8,34 +8,32 @@ import java.util.List;
 public class DiagnosisUpdater {
 
     public static void writePatientToCSVs(List<Patient> patients, String filePathMedIn,
-                                          String filePathChirurgie, String filePathObstetrique) throws IOException {
+                                          String filePathSurgery, String filePathObstetrics) throws IOException {
         if (patients.isEmpty()) {
             return;
         }
 
-
         try (FileWriter updateMedIn = new FileWriter(filePathMedIn, true);
-             FileWriter updateChirurgie = new FileWriter(filePathChirurgie, true);
-             FileWriter updateObstetrique = new FileWriter(filePathObstetrique, true)) {
+             FileWriter updateSurgery = new FileWriter(filePathSurgery, true);
+             FileWriter updateObstetrics = new FileWriter(filePathObstetrics, true)) {
 
             for (Patient patient : patients) {
-                String patientData = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+                String patientData = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
                         patient.getName(), patient.getFamilyName(), patient.getAge(),
-                        patient.getAddress(), patient.getPhoneNumber(),
                         patient.getDiagnosis(), patient.getBMI(),
                         patient.getBodyTemperature(), patient.getBloodPressure(),
                         patient.getHeartRate(), patient.getRespiratoryRate(), patient.getNote());
 
                 // Check the diagnosis type and write to the corresponding file
                 switch (patient.getDiagnosis()) {
-                    case "Medicine  Interne":
+                    case "Internal Medicine":
                         updateMedIn.append(patientData);
                         break;
-                    case "Chirurgie":
-                        updateChirurgie.append(patientData);
+                    case "Surgery":
+                        updateSurgery.append(patientData);
                         break;
-                    case "Obstetrique":
-                        updateObstetrique.append(patientData);
+                    case "Obstetrics":
+                        updateObstetrics.append(patientData);
                         break;
                     // Add more cases for other diagnosis types if needed
                     default:

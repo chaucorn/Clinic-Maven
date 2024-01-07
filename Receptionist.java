@@ -4,15 +4,8 @@ import java.util.Scanner;
 
 public class Receptionist {
     private final DataStorage dataBasePatient;
-//    private final DataStorage dataStorageMedInterne;
-//    private final DataStorage dataStorageChirurgie;
-//    private final DataStorage dataStorageObstetrique;
-
     public Receptionist(DataStorage dataBasePatient) {
         this.dataBasePatient = dataBasePatient;
-//        this.dataStorageMedInterne = dataStorageMedInterne;
-//        this.dataStorageChirurgie = dataStorageChirurgie;
-//        this.dataStorageObstetrique = dataStorageObstetrique;
     }
 
     public void registerPatient() {
@@ -34,45 +27,29 @@ public class Receptionist {
         String phoneNumber = scanner.nextLine();
 
         System.out.println("Select diagnosis type: ");
-        System.out.println("1. Chirurgie");
-        System.out.println("2. Medicine Interne");
-        System.out.println("3. Obstetrique");
+        System.out.println("1. Surgery");
+        System.out.println("2. Internal Medicine");
+        System.out.println("3. Obstetrics");
         int choice = scanner.nextInt();
 
         String diagnosis = "";
         switch (choice) {
             case 1:
-                diagnosis = "Chirurgie";
+                diagnosis = "Surgery";
                 break;
             case 2:
-                diagnosis = "Medicine Interne";
+                diagnosis = "Internal Medicine";
                 break;
             case 3:
-                diagnosis = "Obstetrique";
+                diagnosis = "Obstetrics";
                 break;
             default:
                 System.out.println("Invalid choice");
         }
-
-
-
         Patient patient = new Patient(name, familyName, age, diagnosis);
         patient.setAddress(address);
         patient.setPhoneNumber(phoneNumber);
         patient.setDiagnosis(diagnosis);
-        //patient.setDateOfBirth(dateOfBirth);
-
-//        switch (diagnosis) {
-//            case "Chirurgie":
-//                dataStorageChirurgie.addPatient(patient);
-//                break;
-//            case "Medicine Interne":
-//                dataStorageMedInterne.addPatient(patient);
-//                break;
-//            case "Obstetrique":
-//                dataStorageObstetrique.addPatient(patient);
-//                break;
-//        }
         dataBasePatient.addPatient(patient);
 
         System.out.println("src.Role.Patient registered successfully!");
@@ -81,15 +58,4 @@ public class Receptionist {
         return dataBasePatient;
     }
 
-//    public DataStorage getDataStorageMedInterne() {
-//        return dataStorageMedInterne;
-//    }
-//
-//    public DataStorage getDataStorageChirurgie() {
-//        return dataStorageChirurgie;
-//    }
-//
-//    public DataStorage getDataStorageObstetrique() {
-//        return dataStorageObstetrique;
-//    }
 }

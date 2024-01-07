@@ -5,13 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Patient {
-//    private final String patientId;
     private final String name;
     private final String familyName;
     private final int age;
     private String address;
     private String phoneNumber;
-//    private String dateOfBirth;
     private String diagnosis;
     private double BMI;
     private double bodyTemperature;
@@ -22,25 +20,10 @@ public class Patient {
 
     public Patient(String name, String familyName, int age, String diagnosis) {
         this.familyName = familyName;
-//        this.patientId = generateUniqueId();
         this.name = name;
         this.age = age;
-//        this.address = address;
-//        this.phoneNumber = phoneNumber;
-//        this.dateOfBirth = String.valueOf(parseDateOfBirth(String.valueOf(dateOfBirth)));
-//        this.BMI = bmi;
-//        this.bodyTemperature = bodyTemperature;
-//        this.bloodPressure = bloodPressure;
-//        this.heartRate = heartRate;
-//        this.respiratoryRate = respiratoryRate;
         this.diagnosis = diagnosis;
     }
-//    private String generateUniqueId() {
-//        return UUID.randomUUID().toString();
-//    }
-//    public String getPatientId() {
-//        return patientId;
-//    }
 
     private Date parseDateOfBirth(String dateOfBirth) {
         try {
@@ -71,10 +54,6 @@ public class Patient {
         return address;
     }
 
-//    public String getDateOfBirth() {
-//        return formatToMonthDayYear(dateOfBirth);
-//    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -83,9 +62,7 @@ public class Patient {
         return BMI;
     }
 
-    public String getBloodPressure() {
-        return bloodPressure;
-    }
+
 
     public double getBodyTemperature() {
         return bodyTemperature;
@@ -107,10 +84,6 @@ public class Patient {
         this.address = address;
     }
 
-//    public void setDateOfBirth(String dateOfBirth) {
-//        this.dateOfBirth = dateOfBirth;
-//    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
@@ -125,7 +98,9 @@ public class Patient {
     public void setBMI(double BMI){
         this.BMI = BMI;
     }
-
+    public String getBloodPressure() {
+        return bloodPressure;
+    }
     public void setBloodPressure(String bloodPressure) {
         this.bloodPressure = String.valueOf(bloodPressure);
     }

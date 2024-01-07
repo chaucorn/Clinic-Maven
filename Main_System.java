@@ -7,12 +7,6 @@ import java.util.Scanner;
 class Main_System {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-//        DataStorage dataStorage = new DataStorage();
-//        Receptionist receptionist = new Receptionist(dataStorage);
-//        receptionist.registerPatient();
-//        System.out.println("\nPatient Database:");
-//        List<Patient> patientDatabase = dataStorage.getPatients();
-//        CSVWriter.writePatientToCSVs(patientDatabase, "Patient_DataBase.csv","DatabaseMedInterne.csv", "DatabaseChirurgie.csv", "DatabaseObstertrique.csv");Scanner scanner = new Scanner(System.in);
         System.out.println("Choose a role:");
         System.out.println("1. Receptionist");
         System.out.println("2. Doctor");
@@ -21,12 +15,16 @@ class Main_System {
             // Receptionist
             DataStorage dataStorage = new DataStorage();
             Receptionist receptionist = new Receptionist(dataStorage);
-            receptionist.registerPatient();
+            do {
+                receptionist.registerPatient();
+                System.out.println("Do you want to add another patient? (1 for Yes, 0 for No): ");
+            } while (scanner.nextInt() == 1);
+
             System.out.println("\nPatient Database:");
             List<Patient> patientDatabase = dataStorage.getPatients();
             CSVWriter.writePatientToCSVs(patientDatabase, "Patient_DataBase.csv",
-                    "DatabaseMedInterne.csv", "DatabaseChirurgie.csv",
-                    "DatabaseObstertrique.csv" );
+                    "WaitingMedInterne.csv", "WaitingSurgery.csv",
+                    "WaitingObstetrics.csv");
         } else if (choice == 2) {
             // Doctor
             String specialization = promptForDoctorSpecialization();
@@ -35,24 +33,31 @@ class Main_System {
             // Choose the appropriate data storage based on the doctor's specialization
             DataStorage doctorDataStorage = new DataStorage();
             switch (specialization) {
-                case "Chirurgie":
-                    doctor.addDiagnosisFromCSV("DatabaseChirurgie.csv", doctorDataStorage);
+                case "Surgery":
+
+                    doctor.addDiagnosisFromCSV("WaitingSurgery.csv", doctorDataStorage);
+                    doctor.addDiagnosis(doctorDataStorage);
+                    ClearCsvFile.clearCsvFile("WaitingSurgery.csv");
                     break;
-                case "Medicine Internet":
-                    doctor.addDiagnosisFromCSV("DatabaseMedInterne.csv", doctorDataStorage);
+                case "Internal Medicine":
+
+                    doctor.addDiagnosisFromCSV("WaitingMedInterne.csv", doctorDataStorage);
+                    doctor.addDiagnosis(doctorDataStorage);
+                    ClearCsvFile.clearCsvFile("WaitingMedInterne.csv");
                     break;
-                case "Obstetrique":
-                    doctor.addDiagnosisFromCSV("DatabaseObstertrique.csv", doctorDataStorage);
+                case "Obstetrics":
+                    doctor.addDiagnosisFromCSV("WaitingObstetrics.csv", doctorDataStorage);
+                    doctor.addDiagnosis(doctorDataStorage);
+                    ClearCsvFile.clearCsvFile("WaitingObstetrics.csv");
                     break;
                 default:
                     System.out.println("Invalid specialization. Exiting...");
                     return;
             }
-            doctor.addDiagnosis(doctorDataStorage);
             List<Patient> patientDatabase = doctorDataStorage.getPatients();
 
             DiagnosisUpdater.writePatientToCSVs(patientDatabase, "DiagnosedMedIn.csv",
-                    "DiagnosedChirurgie.csv", "DiagnosedObstertrique.csv");
+                    "DiagnosedSurgery.csv", "DiagnosedObstetrics.csv");
 
         } else {
             System.out.println("Invalid choice. Exiting...");
@@ -63,22 +68,22 @@ class Main_System {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Choose doctor specialization:");
-        System.out.println("1. Chirurgie");
-        System.out.println("2. Medicine Internet");
-        System.out.println("3. Obstetrique");
+        System.out.println("1. Surgery");
+        System.out.println("2. Internal Medicine");
+        System.out.println("3. Obstetrics");
         int choice = scanner.nextInt();
 
         switch (choice) {
             case 1:
-                return "Chirurgie";
+                return "Surgery";
             case 2:
-                return "Medicine Internet";
+                return "Internal Medicine";
             case 3:
-                return "Obstetrique";
+                return "Obstetrics";
             default:
                 System.out.println("Invalid choice. Exiting...");
                 System.exit(0);
-                return ""; // This line will never be reached, but required for compilation
+                return "";
         }
 
     }

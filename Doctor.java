@@ -11,11 +11,9 @@ import java.util.Scanner;
 
 public class Doctor {
     private final String specialization;
-
     public Doctor(String specialization) {
         this.specialization = specialization;
     }
-
     public void addDiagnosisFromCSV(String csvFilePath, DataStorage dataStorage) {
         try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
             List<String[]> lines = reader.readAll();
@@ -24,14 +22,13 @@ public class Doctor {
                 String name = line[0];
                 String familyName = line[1];
                 int age = Integer.parseInt(line[2]);
-                //String dateOfBirth = line[3];
-
                 String diagnosis = line[5];
                 Patient patient = new Patient(name, familyName, age, diagnosis);
 
                 dataStorage.addPatient(patient);
 
-                System.out.println("Diagnosis added for patient: " + patient.getName());
+                System.out.println("Diagnosis added for patient: " + patient.getName()
+                + patient.getFamilyName());
             }
         } catch (IOException | CsvException e) {
             e.printStackTrace();
@@ -41,14 +38,14 @@ public class Doctor {
         List<Patient> patients = dataStorage.getPatients();
         Scanner scanner = new Scanner(System.in);
 
-//        System.out.println("Doctor specializing in " + specialization);
         System.out.println("Patient Database:");
 
         for (Patient patient : patients) {
             //                System.out.println("Patient ID: " + patient.getPatientId());
             System.out.println("Name: " + patient.getName());
+            System.out.println("Family Name: " + patient.getFamilyName());
             System.out.println("Age: " + patient.getAge());
-//                System.out.println("Address: " + patient.getAddress());
+
 //                System.out.println("Phone Number: " + patient.getPhoneNumber());
 //                System.out.println("Date of Birth: " + DateUtils.formatToMonthDayYear(patient.getDateOfBirth()));
             System.out.println("Diagnosis: " + patient.getDiagnosis());
@@ -59,17 +56,17 @@ public class Doctor {
             System.out.print("BMI: ");
             double BMI = scanner.nextDouble();
             patient.setBMI(BMI);
-            System.out.print(("Body Temperature: "));
+            System.out.print(("Body Temperature (°C): "));
             double bodyTemperature = scanner.nextDouble();
             patient.setBodyTemperature(bodyTemperature);
-            System.out.print(("Blood Pressure: "));
+            System.out.print(("Blood Pressure (mmHg): "));
             scanner.nextLine();
             String bloodPressure = scanner.nextLine();
             patient.setBloodPressure(bloodPressure);
-            System.out.print(("Heart Rate: "));
+            System.out.print(("Heart Rate (bpm): "));
             double heartRate = scanner.nextDouble();
             patient.setHeartRate(heartRate);
-            System.out.print(("Respiratory Rate: "));
+            System.out.print(("Respiratory Rate (breaths/min): "));
             double respiratoryRate = scanner.nextDouble();
             patient.setRespiratoryRate(respiratoryRate);
             System.out.print("Diagnosis Notes: ");

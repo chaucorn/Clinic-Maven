@@ -4,16 +4,17 @@ import java.io.IOException;
 import java.util.List;
 public class CSVWriter {
 
-    public static void writePatientToCSVs(List<Patient> patients, String filePath, String filePathMedIn,
-                                          String filePathChirurgie, String filePathObstetrique) {
+    public static void writePatientToCSVs(List<Patient> patients, String filePath,
+                                          String filePathMedIn, String filePathSurgery,
+                                          String filePathObstetrics) {
         if (patients.isEmpty()) {
             return;
         }
 
         try (FileWriter writerAll = new FileWriter(filePath, true);
              FileWriter writerMedIn = new FileWriter(filePathMedIn, true);
-             FileWriter writerChirurgie = new FileWriter(filePathChirurgie, true);
-             FileWriter writerObstetrique = new FileWriter(filePathObstetrique, true)) {
+             FileWriter writerSurgery = new FileWriter(filePathSurgery, true);
+             FileWriter writerObstetrics = new FileWriter(filePathObstetrics, true)) {
 
             for (Patient patient : patients) {
                 String patientData = String.format("%s,%s,%s,%s,%s,%s\n",
@@ -24,18 +25,16 @@ public class CSVWriter {
 
                 // Check the diagnosis type and write to the corresponding file
                 switch (patient.getDiagnosis()) {
-                    case "Medicine  Interne":
+                    case "Internal Medicine":
                         writerMedIn.append(patientData);
                         break;
-                    case "Chirurgie":
-                        writerChirurgie.append(patientData);
+                    case "Surgery":
+                        writerSurgery.append(patientData);
                         break;
-                    case "Obstetrique":
-                        writerObstetrique.append(patientData);
+                    case "Obstetrics":
+                        writerObstetrics.append(patientData);
                         break;
-                    // Add more cases for other diagnosis types if needed
                     default:
-                        // Handle unknown diagnosis type or ignore
                         break;
                 }
             }
