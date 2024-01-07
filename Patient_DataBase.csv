@@ -1,10 +1,5 @@
-Jasmine,Rose,45,Toulouse,0123456789,Medicine Interne
-Alice,Johnson,35,Paris,01234561234,Obstetrique
-John,Smith,28,Lyon,01234562345,Chirurgie
-Emily,Brown,45,Marseille,01234563456,Obstetrique
-Michael,Davis,22,Nice,01234564567,Medicine Interne
-Sophia,Miller,55,Bordeaux,01234565678,Obstetrique
-Liam,Wilson,31,Lille,01234566789,Chirurgie
-Olivia,Anderson,40,Nantes,01234567890,Chirurgie
-Ethan,Taylor,19,Strasbourg,01234578901,Medicine Interne
-Ava,Moore,50,Montpellier,01234589012,Medicine Interne
+Name,Fam.Name, Age, Address, Phone, Diagnosis
+
+John,Smith,28,Lyon,0123456256,Surgery
+Liam,Wilson,31,Lille,0123456789,Internal Medicine
+Olivia ,Anderson,40,Nantes,0698456123,Obstetrics
